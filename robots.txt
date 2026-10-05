@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://snarware58-debug.github.io/bittu-builds/sitemap.xml
