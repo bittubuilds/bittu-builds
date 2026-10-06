@@ -6,7 +6,7 @@
 <title>Bittu Builds — Design, Web &amp; Motion</title>
 <meta name="description" content="Bittu Builds — the personal brand of Bittu. Design, video, code and creative digital experiences. Powered by Northform.">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090909'/%3E%3Ctext x='32' y='45' font-family='monospace' font-weight='bold' font-size='38' fill='%23C7FF3D' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090909'/%3E%3Ctext x='32' y='45' font-family='monospace' font-weight='bold' font-size='38' fill='%23F2F0EA' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#090909">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Bittu Builds">
@@ -45,12 +45,13 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    BITTU BUILDS × NORTHFORM — design system
-   near-black / deep navy / off-white / muted gray,
-   electric blue + violet used only as controlled accents.
+   near-black / off-white / muted grey — strict monochrome.
+   The only colour on the page lives inside the 3D system
+   (blue / yellow electricity) as an intentional contrast.
    ============================================================ */
 :root{
   --bg:      #090909;
@@ -61,9 +62,10 @@
   --mut-2:   #6e6e6e;
   --line:    #2A2A2A;
   --line-2:  #383838;
-  --blue:    #C7FF3D;   /* accent: muted acid-lime — small states only */
-  --blue-2:  #C7FF3D;
-  --vio:     #F2F0EA;  /* former violet accents → off-white */
+  --acc:     #F2F0EA;  /* the only accent is ink — colour stays in the 3D system */
+  --blue:    #F2F0EA;  /* legacy tokens kept as ink aliases */
+  --blue-2:  #F2F0EA;
+  --vio:     #F2F0EA;
   --ease:    cubic-bezier(.22,1,.36,1);
   --expo:    cubic-bezier(.19,1,.22,1);
   --ease-io: cubic-bezier(.76,0,.24,1);
@@ -76,7 +78,7 @@ html.lock{overflow:hidden}
 body{
   background:var(--bg);
   color:var(--ink);
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Inter',system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   overflow-x:hidden;
@@ -91,11 +93,6 @@ img{display:block;max-width:100%}
 /* ---------- fixed smooth-scroll page ---------- */
 #page{position:relative;width:100%;will-change:transform;background:transparent}
 
-/* ---------- ambient background: hairline grid + grain, almost invisible ---------- */
-#gridlines{
-  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
-  background:repeating-linear-gradient(90deg, rgba(242,240,234,.03) 0 1px, transparent 1px 120px);
-}
 #grain{
   position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;
   background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/></filter><rect width="160" height="160" filter="url(%23n)" opacity="0.55"/></svg>');
@@ -107,10 +104,7 @@ img{display:block;max-width:100%}
 #gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .gl-fallback{
   position:fixed;inset:0;z-index:0;pointer-events:none;display:none;
-  background:
-    radial-gradient(50% 42% at 71% 36%, rgba(61,107,255,.06), transparent 64%),
-    radial-gradient(44% 38% at 25% 68%, rgba(139,92,255,.05), transparent 62%),
-    var(--bg);
+  background:var(--bg);
 }
 .gl-fallback .fb-block{position:absolute;border:1px solid var(--line-2);background:linear-gradient(180deg,#161616,#0b0b0b)}
 .no-webgl #gl{display:none}
@@ -133,10 +127,10 @@ img{display:block;max-width:100%}
   font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.18em;color:var(--ink);
   opacity:0;transform:scale(.8);transition:opacity .2s,transform .25s var(--ease);white-space:nowrap;
 }
-#cur.act{width:9px;height:9px;border-color:var(--blue-2);background:rgba(199,255,61,.12)}
+#cur.act{width:10px;height:10px;border-color:rgba(242,240,234,.55);background:rgba(242,240,234,.07)}
 #cur.lbl{width:52px;height:52px;background:rgba(9,9,9,.85);border-color:var(--line-2)}
 #cur.lbl .cur-label{opacity:1;transform:scale(1)}
-#cur-dot{width:3px;height:3px;background:var(--blue-2);border-radius:50%}
+#cur-dot{width:4px;height:4px;background:var(--ink);border-radius:50%}
 body.has-cursor,body.has-cursor a,body.has-cursor button{cursor:none}
 @media (pointer:coarse){#cur,#cur-dot{display:none}}
 
@@ -150,18 +144,18 @@ body.has-cursor,body.has-cursor a,body.has-cursor button{cursor:none}
   transition:background .5s,border-color .5s;
   border-bottom:1px solid transparent;
 }
-#nav.scrolled{background:rgba(9,9,9,.94);border-bottom-color:var(--line)}
-.logo{display:flex;align-items:baseline;gap:8px;font-weight:700;letter-spacing:-.02em;font-size:15px}
+#nav.scrolled{background:rgba(10,10,10,.92);border-bottom-color:var(--line)}
+.logo{display:flex;align-items:baseline;gap:8px;font-weight:600;letter-spacing:.02em;font-size:13px}
 .logo b{color:var(--ink)}
 .logo span{color:var(--mut-2);font-weight:400;font-size:10px;letter-spacing:.22em}
 .nav-links{display:flex;align-items:center;gap:34px}
 .nav-links a{
-  position:relative;font-size:12px;letter-spacing:.16em;color:var(--mut);
-  padding:6px 0;transition:color .3s;
+  position:relative;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.22em;color:var(--mut);padding:6px 0;transition:color .3s;
 }
 .nav-links a::before{
   content:"";position:absolute;left:-11px;top:50%;width:4px;height:4px;border-radius:50%;
-  background:var(--blue);transform:translateY(-50%) scale(0);transition:transform .35s var(--ease);
+  background:var(--mut-2);transform:translateY(-50%) scale(0);transition:transform .35s var(--ease);
 }
 .nav-links a:hover,.nav-links a.active{color:var(--ink)}
 .nav-links a.active::before{transform:translateY(-50%) scale(1)}
@@ -205,10 +199,6 @@ body.has-cursor,body.has-cursor a,body.has-cursor button{cursor:none}
    HERO
    ============================================================ */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:calc(var(--nav-h) + 4vh) var(--pad-x) 4.5vh;z-index:2}
-.hero::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(46% 42% at 74% 40%, rgba(61,107,255,.06), transparent 66%);
-}
 .hero > *{position:relative}
 .hero-top{flex:none;margin-bottom:1vh}
 .hero-tag{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -216,21 +206,20 @@ body.has-cursor,body.has-cursor a,body.has-cursor button{cursor:none}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .hero h1{
   margin-top:auto;
-  font-size:clamp(34px,5.9vw,86px);
-  line-height:1.05;letter-spacing:-.04em;font-weight:700;
+  font-size:clamp(46px,11.5vw,182px);
+  line-height:.93;letter-spacing:-.05em;font-weight:600;
 }
 .hero h1 .l{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
 .hero h1 .li{
   display:block;transform:translateY(112%);opacity:0;filter:blur(10px);
   transition:transform .95s var(--expo),opacity .55s var(--expo),filter .95s var(--expo);
 }
-.hero h1 .l:nth-child(2) .li{transition-delay:.08s}
-.hero h1 .l:nth-child(3) .li{transition-delay:.16s}
-.hero h1 .l:nth-child(4) .li{transition-delay:.24s}
+.hero h1 .l:nth-child(2) .li{transition-delay:.09s}
+.hero h1 .l:nth-child(3) .li{transition-delay:.18s}
 body.intro .hero h1 .li{transform:none;opacity:1;filter:blur(0)}
 .hero h1 .acc{color:transparent;-webkit-text-stroke:1px var(--ink)}
 .hero-sub{
-  margin-top:26px;max-width:46ch;color:var(--mut);font-size:clamp(15px,1.4vw,17px);line-height:1.65;font-weight:400;
+  margin-top:30px;max-width:38ch;color:var(--mut);font-size:clamp(14px,1.3vw,16px);line-height:1.7;font-weight:400;
   opacity:0;transform:translateY(16px);transition:opacity .8s .55s,transform .9s .55s var(--ease);
 }
 body.intro .hero-sub{opacity:1;transform:none}
@@ -265,21 +254,21 @@ body.intro .hero-foot{opacity:1}
 .btn:hover .ar{color:#090909;transform:translate(4px,-4px)}
 .btn.primary{border-color:var(--ink);background:var(--ink)}
 .btn.primary span,.btn.primary .ar{color:#090909}
-.btn.primary::before{background:var(--blue)}
-.btn.primary:hover span,.btn.primary:hover .ar{color:#090909}
+.btn.primary::before{background:#0A0A0A}
+.btn.primary:hover span,.btn.primary:hover .ar{color:var(--ink)}
 
 /* ============================================================
    SECTIONS COMMON
    ============================================================ */
 section{position:relative;z-index:2}
 .wrap{padding:0 var(--pad-x)}
-.sec-pad{padding-top:clamp(90px,13vh,160px);padding-bottom:clamp(90px,13vh,160px)}
+.sec-pad{padding-top:clamp(110px,17vh,220px);padding-bottom:clamp(110px,17vh,220px)}
 .sec-head{display:flex;align-items:baseline;gap:22px;margin-bottom:clamp(36px,6vh,72px)}
-.sec-head .idx{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--blue-2)}
+.sec-head .idx{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--mut)}
 .sec-head .rule{flex:1;height:1px;background:var(--line);transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease)}
 .sec-head.in .rule{transform:scaleX(1)}
 .h2{
-  font-size:clamp(30px,4.8vw,68px);letter-spacing:-.04em;line-height:1.06;font-weight:700;
+  font-size:clamp(38px,6vw,92px);letter-spacing:-.045em;line-height:1.02;font-weight:600;
   will-change:transform;
 }
 .h2 .l{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
@@ -306,7 +295,7 @@ section{position:relative;z-index:2}
 /* ============================================================
    ABOUT — quiet section
    ============================================================ */
-#about .h2{font-size:clamp(30px,4.6vw,58px)}
+#about .h2{font-size:clamp(40px,5.6vw,84px)}
 .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,6vw,110px);align-items:start}
 .about-copy p{color:var(--mut);font-size:clamp(15px,1.3vw,17px);line-height:1.75;margin-bottom:22px;max-width:52ch}
 .about-copy p strong{color:var(--ink);font-weight:500}
@@ -330,19 +319,19 @@ section{position:relative;z-index:2}
   color:var(--mut);font-size:13px;line-height:1.7;opacity:0;
 }
 .tl-item::after{
-  content:"";position:absolute;top:-1px;left:0;height:2px;width:100%;background:var(--blue);
+  content:"";position:absolute;top:-1px;left:0;height:1px;width:100%;background:var(--ink);
   transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease);
 }
-.tl-item.on{background:rgba(61,107,255,.035)}
+.tl-item.on{background:rgba(242,240,234,.025)}
 .tl-item.on::after{transform:scaleX(1)}
 .tl-item.on .tl-desc{max-height:160px;opacity:1;margin-top:14px}
-.tl-item:hover h3{color:var(--blue-2)}
+.tl-item:hover h3{color:var(--ink)}
 
 /* ============================================================
    SERVICES — editorial rows with previews
    ============================================================ */
 #services{background:linear-gradient(180deg,transparent,rgba(17,17,17,.8) 12%,rgba(17,17,17,.8) 88%,transparent)}
-#services .h2{font-size:clamp(28px,4.2vw,54px)}
+#services .h2{font-size:clamp(34px,5vw,80px)}
 .svc{
   position:relative;display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:clamp(16px,3vw,50px);
   padding:clamp(24px,4vh,40px) 0;border-top:1px solid var(--line);cursor:pointer;
@@ -351,7 +340,7 @@ section{position:relative;z-index:2}
 .svc:last-of-type{border-bottom:1px solid var(--line)}
 .svc .s-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--mut-2);letter-spacing:.16em;transition:color .4s}
 .svc .s-name{
-  font-size:clamp(24px,4.2vw,54px);font-weight:600;letter-spacing:-.035em;line-height:1;
+  font-size:clamp(28px,4.8vw,66px);font-weight:500;letter-spacing:-.04em;line-height:1;
   transition:transform .55s var(--ease),color .4s;
 }
 .svc .s-arrow{font-size:13px;color:var(--mut-2);transition:transform .5s var(--ease),color .4s;justify-self:end}
@@ -361,9 +350,9 @@ section{position:relative;z-index:2}
 }
 .svc.on .s-body,.svc:hover .s-body{max-height:280px;opacity:1}
 .svc:hover,.svc.on{padding-left:14px}
-.svc:hover .s-num,.svc.on .s-num{color:var(--blue-2)}
+.svc:hover .s-num,.svc.on .s-num{color:var(--mut)}
 .svc:hover .s-name,.svc.on .s-name{transform:translateX(6px);color:#fff}
-.svc:hover .s-arrow,.svc.on .s-arrow{transform:rotate(45deg) scale(1.25);color:var(--blue-2)}
+.svc:hover .s-arrow,.svc.on .s-arrow{transform:rotate(45deg) scale(1.25);color:var(--ink)}
 .svc .s-inner{display:grid;grid-template-columns:1fr 180px;gap:36px;align-items:end;padding:18px 0 8px}
 .svc .s-inner p{color:var(--mut);font-size:15px;line-height:1.7;max-width:56ch}
 /* per-service miniature previews */
@@ -401,10 +390,10 @@ section{position:relative;z-index:2}
 .marq span{font-size:12px;letter-spacing:.34em;color:var(--mut-2);text-transform:uppercase;display:inline-flex;gap:64px;align-items:center}
 .marq span::after{content:"";width:7px;height:7px;border:1px solid var(--line-2);display:inline-block;transform:rotate(45deg)}
 @keyframes marq{to{transform:translateX(-50%)}}
-#northform{background:rgba(7,9,16,.55)}
+#northform{background:rgba(12,12,12,.5)}
 .nf-word-wrap{padding:0 var(--pad-x);text-align:center;margin:clamp(26px,5vh,52px) 0 clamp(30px,5vh,56px)}
 .nf-word{
-  font-size:clamp(42px,8.6vw,148px);font-weight:700;letter-spacing:.01em;line-height:1;
+  font-size:clamp(54px,11vw,200px);font-weight:600;letter-spacing:0;line-height:1;
   white-space:nowrap;display:block;width:100%;
 }
 .nf-word .nfl{
@@ -426,14 +415,14 @@ section{position:relative;z-index:2}
 /* ============================================================
    WORK — interactive project stages
    ============================================================ */
-#work .h2{font-size:clamp(30px,5vw,64px)}
+#work .h2{font-size:clamp(38px,6.2vw,98px)}
 .proj{
   display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line);cursor:pointer;
 }
 .proj:last-of-type{border-bottom:1px solid var(--line)}
 .proj-top{display:grid;grid-template-columns:110px 1fr auto;align-items:baseline;gap:clamp(14px,3vw,50px);padding:clamp(26px,4.5vh,48px) 0 clamp(20px,3vh,32px)}
 .proj .p-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--mut-2);letter-spacing:.16em}
-.proj h3{font-size:clamp(28px,4.6vw,58px);font-weight:600;letter-spacing:-.035em;line-height:1;transition:color .4s}
+.proj h3{font-size:clamp(32px,5.2vw,74px);font-weight:500;letter-spacing:-.04em;line-height:1;transition:color .4s}
 .proj .p-side{text-align:right}
 .proj .p-cat{color:var(--mut-2);font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;white-space:nowrap}
 .proj .p-yr{display:block;color:var(--mut-2);font-size:11px;letter-spacing:.2em;font-family:'IBM Plex Mono',monospace;margin-top:7px}
@@ -447,7 +436,7 @@ section{position:relative;z-index:2}
 }
 .view-link::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
 .proj:hover .view-link::after{transform:scaleX(1);transform-origin:left}
-.proj:hover h3{color:var(--blue-2)}
+.proj:hover h3{color:#FFFFFF}
 /* editorial micro-responses — each project answers slightly differently */
 .proj-top{transition:transform .55s var(--ease)}
 .proj .p-num{transition:color .4s,opacity .4s}
@@ -456,7 +445,7 @@ section{position:relative;z-index:2}
 .proj .p-stage-wrap{transition:transform .55s var(--ease)}
 .proj:hover .tools{opacity:1}
 .proj:hover .view-link{transform:translateX(5px)}
-.proj:hover .p-num{color:var(--blue-2)}
+.proj:hover .p-num{color:var(--mut)}
 #proj-list .proj--a:hover .p-stage-wrap{transform:translate(3px,-2px)}
 #proj-list .proj--b:hover .p-stage-wrap{transform:translate(-2px,-3px)}
 #proj-list .proj--c:hover .p-stage-wrap{transform:translate(2px,2px)}
@@ -470,10 +459,10 @@ section{position:relative;z-index:2}
 
 /* stage + asymmetric layouts */
 .stage{
-  position:relative;width:100%;background:#090c15;border:1px solid var(--line-2);overflow:hidden;
+  position:relative;width:100%;background:#0E0E0E;border:1px solid var(--line-2);overflow:hidden;
   transition:transform .45s var(--ease),border-color .45s;transform:perspective(900px);
 }
-.proj:hover .stage{border-color:#2a3450}
+.proj:hover .stage{border-color:#303030}
 .proj--a .stage{aspect-ratio:16/8.4}
 .proj--c .stage{aspect-ratio:16/7.2}
 .proj--b,.proj--d{display:grid;column-gap:4vw}
@@ -503,7 +492,7 @@ section{position:relative;z-index:2}
 .st1 .st-bars span.w60{width:58%}
 .stage:hover .st1 .st-bars span{transform:translateX(4px)}
 .st1 .st-cube{position:relative;width:24%;aspect-ratio:1/1.15}
-.st1 .st-cube i{position:absolute;background:#141a2b;border:1px solid #232c47}
+.st1 .st-cube i{position:absolute;background:#161616;border:1px solid #262626}
 .st1 .st-cube .c1{width:100%;height:12%;bottom:0}
 .st1 .st-cube .c2{width:70%;height:34%;bottom:14%;left:4%}
 .st1 .st-cube .c3{width:46%;height:26%;bottom:52%;left:12%}
@@ -522,16 +511,16 @@ section{position:relative;z-index:2}
 .st2 .st-side span:first-child{background:var(--blue-2);opacity:1}
 .st2 .st-main{position:absolute;top:12%;left:22%;right:6%;bottom:14%}
 .st2 .st-cards{display:flex;gap:5%;height:26%}
-.st2 .st-card{flex:1;border:1px solid var(--line-2);background:#0b0f1c;padding:8% 9%;display:flex;flex-direction:column;gap:12%}
+.st2 .st-card{flex:1;border:1px solid var(--line-2);background:#111111;padding:8% 9%;display:flex;flex-direction:column;gap:12%}
 .st2 .st-card i:first-child{width:46%;height:2px;background:var(--mut-2)}
 .st2 .st-card i:last-child{width:66%;height:5px;background:var(--ink);opacity:.75}
 .stage:hover .st2 .st-card{transform:translateY(-4px)}
 .stage:hover .st2 .st-card:nth-child(2){transition-delay:.06s}
 .stage:hover .st2 .st-card:nth-child(3){transition-delay:.12s}
-.st2 .st-chart{position:absolute;top:36%;left:0;right:0;bottom:0;border:1px solid var(--line-2);background:#0b0f1c;padding:6% 7% 5%}
+.st2 .st-chart{position:absolute;top:36%;left:0;right:0;bottom:0;border:1px solid var(--line-2);background:#111111;padding:6% 7% 5%}
 .st2 .st-chart svg{position:absolute;top:12%;left:7%;right:7%;height:52%;width:86%}
-.st2 .st-chart polyline{fill:none;stroke:var(--blue-2);stroke-width:1.5;opacity:.85}
-.st2 .st-chart circle{fill:var(--blue-2)}
+.st2 .st-chart polyline{fill:none;stroke:var(--ink);stroke-width:1.5;opacity:.45}
+.st2 .st-chart circle{fill:var(--ink)}
 .st2 .st-barsrow{position:absolute;bottom:7%;left:7%;right:7%;height:26%;display:flex;align-items:flex-end;gap:3.5%}
 .st2 .st-barsrow i{flex:1;background:var(--mut-2);opacity:.35;transform-origin:bottom}
 .st2 .st-barsrow i:nth-child(1){height:40%}.st2 .st-barsrow i:nth-child(2){height:65%}
@@ -544,7 +533,7 @@ section{position:relative;z-index:2}
 .stage:hover .st2 .st-barsrow i:nth-child(5){transition-delay:.2s}
 .st2 .st-btn{
   position:absolute;bottom:5%;right:6%;font-family:'IBM Plex Mono',monospace;
-  font-size:clamp(6px,.9vw,9px);letter-spacing:.2em;color:var(--blue-2);border:1px solid rgba(199,255,61,.35);padding:5px 10px;
+  font-size:clamp(6px,.9vw,9px);letter-spacing:.2em;color:var(--mut);border:1px solid var(--line-2);padding:5px 10px;
 }
 .stage:hover .st2 .st-btn{transform:translateX(-4px)}
 /* stage 3 — brand playground */
@@ -553,7 +542,7 @@ section{position:relative;z-index:2}
   display:flex;align-items:center;justify-content:center;
   font-size:clamp(38px,8vw,96px);font-weight:700;letter-spacing:-.03em;color:var(--ink);
 }
-.st3 .st-mk span{color:var(--vio)}
+.st3 .st-mk span{color:var(--mut-2)}
 .stage:hover .st3 .st-mk{transform:translateY(-6px)}
 .stage:hover .st3 .st-mk span{transform:translateY(4px)}
 .st3 .st-spec{position:absolute;top:16%;bottom:24%;left:52%;right:8%;display:flex;flex-direction:column;gap:9%}
@@ -576,9 +565,9 @@ section{position:relative;z-index:2}
 .st4 .st-inner{position:absolute;inset:0;animation:stscroll 9s ease-in-out infinite alternate}
 @keyframes stscroll{from{transform:translateY(0)}to{transform:translateY(-14%)}}
 .st4 .st-h{display:flex;flex-direction:column;gap:2%}
-.st4 .st-h span{font-weight:700;font-size:clamp(22px,5vw,58px);letter-spacing:-.03em;line-height:1;color:var(--ink)}
+.st4 .st-h span{font-weight:600;font-size:clamp(22px,5vw,58px);letter-spacing:-.035em;line-height:1;color:var(--ink)}
 .st4 .st-h .l2{color:var(--mut-2);-webkit-text-stroke:0}
-.st4 .st-vis{position:relative;height:52%;margin-top:6%;border:1px solid var(--line-2);background:#0b0f1c;overflow:hidden}
+.st4 .st-vis{position:relative;height:52%;margin-top:6%;border:1px solid var(--line-2);background:#111111;overflow:hidden}
 .st4 .st-vis .blk{position:absolute;width:16%;height:44%;left:12%;bottom:16%;background:var(--ink);opacity:.55;animation:stfloat 6s ease-in-out infinite alternate}
 @keyframes stfloat{from{transform:translateX(0)}to{transform:translateX(230%)}}
 .st4 .st-vis .ln-b{position:absolute;right:14%;top:24%;width:26%;height:1px;background:var(--vio);opacity:.6}
@@ -601,7 +590,7 @@ section{position:relative;z-index:2}
 #pv-close svg{width:14px;height:14px}
 .pv-body{padding:clamp(40px,7vh,90px) var(--pad-x) clamp(60px,10vh,120px);max-width:1500px;margin:0 auto}
 .pv-kicker{margin-bottom:22px;display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
-.pv-title{font-size:clamp(40px,8vw,110px);font-weight:700;letter-spacing:-.045em;line-height:.98;margin-bottom:26px}
+.pv-title{font-size:clamp(44px,9vw,150px);font-weight:600;letter-spacing:-.05em;line-height:.96;margin-bottom:26px}
 .pv-lede{color:var(--mut);font-size:clamp(15px,1.6vw,19px);line-height:1.75;max-width:62ch;margin-bottom:clamp(36px,6vh,70px)}
 .pv-hero-img{width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:clamp(36px,6vh,70px);border:1px solid var(--line-2)}
 .pv-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,4vw,70px);margin-bottom:clamp(40px,7vh,80px)}
@@ -637,9 +626,9 @@ section{position:relative;z-index:2}
 .c-link:hover{padding-left:14px}
 .c-link:hover::after{transform:scaleX(1);opacity:.5}
 .c-link:hover .lab{opacity:.55}
-.c-link:hover .num{opacity:1;color:var(--blue-2)}
-.c-link:hover .val{color:var(--blue-2)}
-.c-link:hover .go{transform:translate(4px,-4px);color:var(--blue-2)}
+.c-link:hover .num{opacity:1;color:var(--mut)}
+.c-link:hover .val{color:#FFFFFF}
+.c-link:hover .go{transform:translate(4px,-4px);color:var(--ink)}
 .c-link.nf:hover .val,.c-link.nf:hover .go{color:var(--vio)}
 footer{
   position:relative;z-index:2;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
@@ -649,6 +638,30 @@ footer{
 footer .fx{display:flex;gap:24px}
 footer a:hover{color:var(--ink)}
 
+/* ---------- editorial text links (hero) ---------- */
+.tlink{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.24em;
+  color:var(--mut);position:relative;padding:6px 0;transition:color .35s;
+}
+.tlink span{transition:transform .45s var(--ease)}
+.tlink::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--ink);
+  transform:scaleX(0);transform-origin:right;transition:transform .55s var(--ease);
+}
+.tlink:hover{color:var(--ink)}
+.tlink:hover::after{transform:scaleX(1);transform-origin:left}
+.tlink:hover span{transform:translate(3px,-2px)}
+
+/* hero serif accent — the one soft note in a grotesque system */
+.hero h1 .serif-i{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.015em;padding-right:.08em}
+
+/* service preview — creative development */
+.sv-dev .v1{width:56%;height:1px;left:14%;top:30%;background:var(--mut-2)}
+.sv-dev .v2{width:44%;height:1px;left:22%;top:48%;background:var(--mut-2)}
+.sv-dev .v3{width:10px;height:10px;right:16%;top:58%;border:1px solid var(--mut-2);transform:rotate(45deg);transition:transform .7s var(--ease)}
+.svc:hover .sv-dev .v3{transform:rotate(225deg)}
+
 /* ---------- fit + a11y refinements ---------- */
 a:focus-visible,button:focus-visible{outline:2px solid var(--blue-2);outline-offset:3px}
 .h2,.pv-title,.contact-note{text-wrap:balance}
@@ -656,11 +669,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue-2);outline-off
 @media (max-width:600px){
   .proj-top{grid-template-columns:1fr;gap:6px}
   .proj .p-num{grid-column:1}
-  .proj h3{grid-column:1;font-size:clamp(22px,7.5vw,32px);line-height:1.08}
+  .proj h3{grid-column:1;font-size:clamp(26px,8.5vw,44px);line-height:1.06}
   .proj .p-side{grid-column:1;justify-self:start;text-align:left;margin-top:8px}
   .proj .p-cat{white-space:normal}
   #contact .h2{font-size:clamp(28px,8.4vw,88px)}
-  .pv-title{font-size:clamp(28px,8.5vw,110px)}
+  .pv-title{font-size:clamp(32px,9.5vw,150px)}
 }
 
 /* ============================================================
@@ -697,9 +710,9 @@ body.on-contact #nav{opacity:0;pointer-events:none;transition:opacity .3s}
 body.on-contact html{overflow:hidden}
 .cp-inner{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:calc(var(--nav-h) + 5vh) var(--pad-x) 5vh;position:relative}
 .cp-head .mono{margin-bottom:26px;display:block}
-.cp-ghost{position:absolute;right:clamp(10px,5vw,84px);top:clamp(24px,7vh,80px);font-weight:600;letter-spacing:-.05em;line-height:1;font-size:clamp(110px,23vw,290px);color:transparent;-webkit-text-stroke:1px rgba(140,148,178,.12);pointer-events:none;user-select:none;z-index:0}
-.cp-title{font-size:clamp(44px,8.4vw,120px);letter-spacing:-.045em;line-height:.99;font-weight:700}
-.cp-title .acc{color:transparent;-webkit-text-stroke:1px var(--ink)}
+.cp-ghost{position:absolute;right:clamp(10px,5vw,84px);top:clamp(24px,7vh,80px);font-weight:600;letter-spacing:-.05em;line-height:1;font-size:clamp(110px,23vw,290px);color:transparent;-webkit-text-stroke:1px rgba(242,240,234,.09);pointer-events:none;user-select:none;z-index:0}
+.cp-title{font-size:clamp(50px,9.6vw,172px);letter-spacing:-.05em;line-height:.96;font-weight:600}
+.cp-title .acc{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
 .cp-title .l{display:block;overflow:hidden;padding-bottom:.07em;margin-bottom:-.07em}
 .cp-title .li{display:block;transform:translateY(115%);opacity:0;filter:blur(8px);transition:transform .9s var(--expo),opacity .5s,filter .9s}
 .cp-title .l:nth-child(2) .li{transition-delay:.08s}
@@ -722,15 +735,15 @@ body.on-contact html{overflow:hidden}
 #back-to-work:hover{color:var(--ink)}
 .cp-meta{display:flex;gap:24px;flex-wrap:wrap;font-size:11px;color:var(--mut-2);letter-spacing:.08em}
 /* restrained traces of the energy system on page 02 */
-.cp-dot{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--blue-2);opacity:.3;animation:cpfloat 9s ease-in-out infinite alternate;pointer-events:none}
+.cp-dot{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--mut-2);opacity:.35;animation:cpfloat 9s ease-in-out infinite alternate;pointer-events:none}
 .cp-dot.vio{background:var(--vio)}
 .cp-dot.d2{animation-delay:-3s}
 .cp-dot.d3{animation-delay:-6s}
 @keyframes cpfloat{from{transform:translate(0,0)}to{transform:translate(0,-38px)}}
-.cp-trace{position:absolute;width:1px;height:18vh;background:linear-gradient(180deg,transparent,rgba(199,255,61,.18),transparent);animation:cppulse 5s ease-in-out infinite;pointer-events:none}
+.cp-trace{position:absolute;width:1px;height:18vh;background:linear-gradient(180deg,transparent,rgba(242,240,234,.14),transparent);animation:cppulse 5s ease-in-out infinite;pointer-events:none}
 @keyframes cppulse{0%,100%{opacity:.25}50%{opacity:.65}}
 @media (max-width:600px){
-  .cp-title{font-size:clamp(38px,11.5vw,120px)}
+  .cp-title{font-size:clamp(44px,12.5vw,172px)}
   .cp-foot{flex-direction:column;align-items:flex-start;gap:18px}
   #launch-hint{bottom:12vh}
 }
@@ -761,7 +774,7 @@ body.on-contact html{overflow:hidden}
 @media (max-width:860px){
   .nav-links{display:none}
   #burger{display:block}
-  .hero h1{font-size:clamp(32px,9.5vw,54px)}
+  .hero h1{font-size:clamp(44px,13.5vw,110px)}
   .hero-foot{flex-direction:column;align-items:flex-start;gap:22px}
   .timeline{grid-template-columns:1fr;border-top:0}
   .tl-item{border-right:0;border-top:1px solid var(--line);padding:18px 0}
@@ -783,7 +796,6 @@ body.on-contact html{overflow:hidden}
 </head>
 <body>
 
-<div id="gridlines" aria-hidden="true"></div>
 <div class="gl-fallback" aria-hidden="true">
   <div class="fb-block fb-1"></div><div class="fb-block fb-2"></div><div class="fb-block fb-3"></div>
   <div class="fb-block fb-4"></div>
@@ -791,7 +803,7 @@ body.on-contact html{overflow:hidden}
 
 <!-- ================= NAV ================= -->
 <nav id="nav">
-  <a class="logo" href="#hero" data-nav><b>BITTU</b> BUILDS<span>/ NORTHFORM</span></a>
+  <a class="logo" href="#hero" data-nav><b>BITTU</b>&nbsp;BUILDS</a>
   <div class="nav-links">
     <a href="#work" data-nav>WORK</a>
     <a href="#about" data-nav>ABOUT</a>
@@ -822,18 +834,17 @@ body.on-contact html{overflow:hidden}
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-top">
-      <div class="hero-tag mono"><span class="dot"></span>BITTU BUILDS — DIGITAL CREATOR / DESIGNER / BUILDER</div>
+      <div class="hero-tag mono"><span class="dot"></span>BITTU BUILDS — WEB DESIGN · VIDEO EDITING · CREATIVE TECHNOLOGY</div>
     </div>
     <h1>
-      <span class="l"><span class="li">BUILDING</span></span>
-      <span class="l"><span class="li">DIGITAL THINGS</span></span>
-      <span class="l"><span class="li">THAT FEEL</span></span>
-      <span class="l"><span class="li"><span class="acc">DIFFERENT.</span></span></span>
+      <span class="l"><span class="li">I BUILD</span></span>
+      <span class="l"><span class="li">DIGITAL</span></span>
+      <span class="l"><span class="li serif-i">THINGS.</span></span>
     </h1>
-    <p class="hero-sub">I design websites, visual experiences and digital systems while building Northform.</p>
+    <p class="hero-sub">Websites, video and creative systems — designed and built by hand. The personal brand of Bittu, powered by Northform.</p>
     <div class="hero-cta">
-      <a class="btn primary" href="#work" data-nav data-mag data-cursor="EXPLORE"><span>Explore Work</span><span class="ar">↗</span></a>
-      <a class="btn" href="#contact" data-nav data-mag data-cursor="OPEN"><span>Work With Me</span><span class="ar">↗</span></a>
+      <a class="tlink" href="#work" data-nav data-cursor="OPEN">SELECTED WORK <span>↓</span></a>
+      <a class="tlink" href="#/contact" data-nav data-cursor="OPEN">GET IN TOUCH <span>↗</span></a>
     </div>
     <div class="hero-foot">
       <a class="nf-badge" href="#northform" data-nav data-cursor="OPEN"><span class="sq"></span>POWERED BY NORTHFORM</a>
@@ -851,7 +862,7 @@ body.on-contact html{overflow:hidden}
     <div class="about-grid">
       <div class="about-copy">
         <h2 class="h2 in" data-drift="26" style="margin-bottom:34px">
-          <span class="l"><span class="li">WHO IS <span class="outline">BITTU?</span></span></span>
+          <span class="l"><span class="li">I'M <span class="outline">BITTU.</span></span></span>
         </h2>
         <p class="rv">I'm Bittu — a young designer, creator and builder exploring technology, design and entrepreneurship by actually making things.</p>
         <p class="rv d1">I build <strong>websites, creative digital experiences and visual work</strong> while growing Northform and documenting the process through Bittu Builds.</p>
@@ -901,20 +912,20 @@ body.on-contact html{overflow:hidden}
     <div id="svc-list">
       <div class="svc" data-svc="0">
         <span class="s-num">01</span>
-        <div class="s-name">WEBSITE DESIGN</div>
+        <div class="s-name">WEB DESIGN</div>
         <span class="s-arrow">↗</span>
         <div class="s-body"><div class="s-inner">
           <p>Editorial, fast, responsive sites — designed and built by hand. Layout, type and motion as one system, not a downloaded theme.</p>
           <div class="s-vis sv-web"><i class="v1"></i><i class="v2"></i><i class="v3"></i><i class="v4"></i></div>
         </div></div>
       </div>
-      <div class="svc" data-svc="1">
+      <div class="svc" data-svc="3">
         <span class="s-num">02</span>
-        <div class="s-name">AUTOMATION</div>
+        <div class="s-name">VIDEO EDITING</div>
         <span class="s-arrow">↗</span>
         <div class="s-body"><div class="s-inner">
-          <p>Workflows and systems that remove the repetitive — for content pipelines, client ops and anything done more than twice.</p>
-          <div class="s-vis sv-auto"><i class="v1"></i><i class="v2"></i></div>
+          <p>Story-first cuts with real rhythm — pacing, sound and structure that hold attention instead of begging for it.</p>
+          <div class="s-vis sv-video"><i class="v1"></i><i class="v2"></i><i class="v3"></i><i class="v4"></i></div>
         </div></div>
       </div>
       <div class="svc" data-svc="2">
@@ -926,13 +937,22 @@ body.on-contact html{overflow:hidden}
           <div class="s-vis sv-graph"><i class="v1"></i><i class="v2"></i><i class="v3"></i></div>
         </div></div>
       </div>
-      <div class="svc" data-svc="3">
+      <div class="svc" data-svc="1">
         <span class="s-num">04</span>
-        <div class="s-name">VIDEO EDITING</div>
+        <div class="s-name">AUTOMATION</div>
         <span class="s-arrow">↗</span>
         <div class="s-body"><div class="s-inner">
-          <p>Story-first cuts with real rhythm — pacing, sound and structure that hold attention instead of begging for it.</p>
-          <div class="s-vis sv-video"><i class="v1"></i><i class="v2"></i><i class="v3"></i><i class="v4"></i></div>
+          <p>Workflows and systems that remove the repetitive — for content pipelines, client ops and anything done more than twice.</p>
+          <div class="s-vis sv-auto"><i class="v1"></i><i class="v2"></i></div>
+        </div></div>
+      </div>
+      <div class="svc" data-svc="0">
+        <span class="s-num">05</span>
+        <div class="s-name">CREATIVE DEVELOPMENT</div>
+        <span class="s-arrow">↗</span>
+        <div class="s-body"><div class="s-inner">
+          <p>Interactive builds, WebGL scenes and experimental interfaces — the creative-technology edge of what I make, 3D included.</p>
+          <div class="s-vis sv-dev"><i class="v1"></i><i class="v2"></i><i class="v3"></i></div>
         </div></div>
       </div>
     </div>
