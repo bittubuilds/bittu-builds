@@ -4,7 +4,7 @@ Personal brand site of Bittu. Design, video, code and creative digital experienc
 
 ## Live site
 
-https://bittu_builds.github.io/bittu-builds/
+https://bittubuilds.github.io/bittu-builds/
 
 Hosted free on GitHub Pages.
 
