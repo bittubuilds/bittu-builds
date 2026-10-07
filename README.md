@@ -4,7 +4,7 @@ Personal brand site of Bittu. Design, video, code and creative digital experienc
 
 ## Live site
 
-https://snarware58-debug.github.io/bittu-builds/
+https://bittu_builds.github.io/bittu-builds/
 
 Hosted free on GitHub Pages.
 
